@@ -5,6 +5,7 @@ import Banner from "../Components/Banner/Banner";
 import DisplayCategory from "../Components/Banner/DisplayCategory";
 import Categories from "../Components/Categories/Categories";
 import Main from "../Components/Layout/Main";
+import SignUp from "../Components/SignUp/SignUp";
 const router = createBrowserRouter([
     {
         path:"/",
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path:"/addProducts",
                 element:<AllCategorys></AllCategorys>
+            },
+            {
+                path:"/signup",
+                element:<SignUp></SignUp>
             }
            
         ]
