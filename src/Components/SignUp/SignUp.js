@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useState,useContext } from 'react';
 import { AuthContext } from '../../Context/Authprovider';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const SignUp = () => {
     const { createUser, updateUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const [signUpError, setsignUpError] = useState("")
     const handleSignup = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -25,8 +27,12 @@ const SignUp = () => {
                     body:JSON.stringify(usersInfo)
                 })
                 form.reset();
+                navigate("/");
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                setsignUpError(err.message);
+                console.error(err)
+            });
     }
     const updateSignInUser = (name) => {
         const profile = { displayName: name}
@@ -73,6 +79,7 @@ const SignUp = () => {
                                 </select>
                             </div>
                             <button type="submit" class="w-full text-blaxk btn btn-ghonst">Create an account</button>
+                            <p className="text-red-600">{signUpError}</p>
                             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                                 Already have an account? <Link to="/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</Link>
                             </p>

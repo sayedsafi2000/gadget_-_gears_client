@@ -5,6 +5,7 @@ import Banner from "../Components/Banner/Banner";
 import DisplayCategory from "../Components/Banner/DisplayCategory";
 import Categories from "../Components/Categories/Categories";
 import Main from "../Components/Layout/Main";
+import Login from "../Components/Login/Login";
 import SignUp from "../Components/SignUp/SignUp";
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path:"/signup",
                 element:<SignUp></SignUp>
+            },
+            {
+                path:"/login",
+                element:<Login></Login>
             }
            
         ]

@@ -7,7 +7,7 @@ const Categories = (category) => {
             .then(res => res.json())
             .then(data => setCategoriesProducts(data))
     }
-        , [])
+        , [category])
     return (
         <div>
             <h2>Hehe {categoriesProducts?.length} </h2>
