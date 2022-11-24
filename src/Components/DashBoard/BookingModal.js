@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/Authprovider';
 
-const BookingModal = ({ catagories }) => {
+const BookingModal = ({ booking }) => {
     const { user } = useContext(AuthContext);
     const handleBooking = event =>{
         event.preventDefault();
@@ -11,19 +11,21 @@ const BookingModal = ({ catagories }) => {
         const email = form.email.value;
         const title = form.title.value;
         const price = form.price.value;
-        const booking={
+        const image = booking.image;
+        const bookings={
             name,
             email,
             title,
-            price
+            price,
+            image
         }
-        console.log(booking)
+
         fetch("http://localhost:5000/booking", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify(booking)
+            body: JSON.stringify(bookings)
         })
             .then(res => res.json())
             .then(data =>{
@@ -41,19 +43,19 @@ const BookingModal = ({ catagories }) => {
                     <form onSubmit={handleBooking} action="">
                         <div className=''>
                             <label className='block' htmlFor="">Buyers Name</label>
-                            <input name='name' defaultValue={user?.displayName} type="text" placeholder="Type here" className="input input-bordered w-full" />
+                            <input readOnly name='name' defaultValue={user?.displayName} type="text" placeholder="Type here" className="input input-bordered w-full" />
                         </div>
                         <div className=''>
                             <label className='block' htmlFor="">Buyers Email</label>
-                            <input name='email' defaultValue={user?.email} type="text" placeholder="Type here" className="input input-bordered w-full" />
+                            <input name='email' readOnly defaultValue={user?.email} type="text" placeholder="Type here" className="input input-bordered w-full" />
                         </div>
                         <div className=''>
                             <label className='block' htmlFor="">Product Name</label>
-                            <input name='title' defaultValue={catagories?.title} type="text" placeholder="Type here" className="input input-bordered w-full" />
+                            <input name='title' readOnly defaultValue={booking?.title} type="text" placeholder="Type here" className="input input-bordered w-full" />
                         </div>
                         <div className=''>
                             <label className='block' htmlFor="">Product Price</label>
-                            <input name='price' defaultValue={catagories?.price} type="text" placeholder="Type here" className="input input-bordered w-full" />
+                            <input name='price' readOnly defaultValue={booking?.price} type="text" placeholder="Type here" className="input input-bordered w-full" />
                         </div>
                         <input className='btn w-full  bg-gray-900' type="submit" value="Booking" />
                     </form>

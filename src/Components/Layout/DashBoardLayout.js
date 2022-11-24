@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import Footer from '../Shard/Footer';
 import Navbar from '../Shard/Navbar';
 
 const DashBoardLayout = () => {
@@ -31,6 +32,7 @@ const DashBoardLayout = () => {
 
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

@@ -5,6 +5,7 @@ import Banner from "../Components/Banner/Banner";
 import DisplayCategory from "../Components/Banner/DisplayCategory";
 import Categories from "../Components/Categories/Categories";
 import Dashboard from "../Components/DashBoard/Dashboard";
+import Error404 from "../Components/ErrorHandle/Error404";
 import DashBoardLayout from "../Components/Layout/DashBoardLayout";
 import Main from "../Components/Layout/Main";
 import Login from "../Components/Login/Login";
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     {
         path:"/",
         element:<Main></Main>,
+        errorElement:<Error404></Error404>,
         children:[
             {
                 path:"/",
@@ -43,6 +45,7 @@ const router = createBrowserRouter([
     {
         path:"/dashboard",
         element:<DashBoardLayout></DashBoardLayout>,
+        errorElement:<Error404></Error404>,
         children:[{
             path:"/dashboard",
             element:<Dashboard></Dashboard>

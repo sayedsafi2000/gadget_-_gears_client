@@ -70,8 +70,8 @@ const AllCategorys = () => {
 
     }
     return (
-        <div>
-            <h2>All Category</h2>
+        <div className='w-10/12 lg:w-5/12 mx-auto'>
+            <h2 className='text-2xl font-bold'>ADD YOUR PRODUCTS YOU WANT TO SELL</h2>
             <form onSubmit={handleAddtoService} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
@@ -103,18 +103,12 @@ const AllCategorys = () => {
                     </label>
                     <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name='place' id="place" type="text" placeholder="Place You wanna meet" />
                 </div>
-                {/* <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="img">
-                        PhotoURL
-                    </label>
-                    <input name='img' className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="img" type="text" placeholder="enter photoURL" />
-                </div> */}
                 <div>
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">
                         Select Category
                     </label>
                     <select name='category' className="select select-bordered w-full max-w-xs mb-5">
-                        <option disabled selected>android</option>
+                        <option selected>android</option>
                         <option>windows</option>
                         <option>tablet</option>
                         <option>featured</option>
@@ -125,7 +119,7 @@ const AllCategorys = () => {
                         Products Condition
                     </label>
                     <select name='condition' className="select select-bordered w-full max-w-xs mb-5">
-                        <option disabled selected>Full Fresh</option>
+                        <option selected>Full Fresh</option>
                         <option>Good</option>
                         <option>Fair</option>
                         <option>Problem</option>

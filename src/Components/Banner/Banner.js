@@ -14,36 +14,6 @@ const Banner = () => {
 
                     <img className='lg:w-4/5 lg:h-[400px]' src="banner-photo.png" alt="" />
                 </div>
-                {/* <div className="carousel w-1/2 shadow-xl">
-                    <div id="slide1" className="carousel-item relative w-full">
-                        <img alt="" src="banner.jpg" className="w-full" />
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a href="#slide4" className="btn btn-circle">❮</a>
-                            <a href="#slide2" className="btn btn-circle">❯</a>
-                        </div>
-                    </div>
-                    <div id="slide2" className="carousel-item relative w-full">
-                        <img alt="" src="banner2.jpeg" className="w-full" />
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a href="#slide1" className="btn btn-circle">❮</a>
-                            <a href="#slide3" className="btn btn-circle">❯</a>
-                        </div>
-                    </div>
-                    <div id="slide3" className="carousel-item relative w-full">
-                        <img alt="" src="banner2.jpeg" className="w-full" />
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a href="#slide2" className="btn btn-circle">❮</a>
-                            <a href="#slide4" className="btn btn-circle">❯</a>
-                        </div>
-                    </div>
-                    <div id="slide4" className="carousel-item relative w-full">
-                        <img alt='' src="banner2.jpeg" className="w-full" />
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a href="#slide3" className="btn btn-circle">❮</a>
-                            <a href="#slide1" className="btn btn-circle">❯</a>
-                        </div>
-                    </div>
-                </div> */}
 
 
                 <Swiper
@@ -53,8 +23,8 @@ const Banner = () => {
                     navigation
                     pagination={{ clickable: true }}
                     scrollbar={{ draggable: true }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
                     className="w-full lg:w-9/12 rounded-md"
                 >
                     <SwiperSlide> <img alt="" src="banner.jpg" className="w-full h-full" /></SwiperSlide>
