@@ -10,24 +10,26 @@ const SignUp = () => {
         const name = form.name.value;
         const role = form.role.value;
         const password = form.password.value;
+        const usersInfo = {email,name,role}
+        console.log(usersInfo)
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                updateSignInUser(name,role)
+                updateSignInUser(name)
                 console.log(user);
                 fetch("http://localhost:5000/users",{
                     method:"POST",
                     headers:{
                         "content-type":"application/json"
                     },
-                    body:JSON.stringify(user)
+                    body:JSON.stringify(usersInfo)
                 })
                 form.reset();
             })
             .catch(err => console.error(err));
     }
-    const updateSignInUser = (name, role) => {
-        const profile = { displayName: name, role: role }
+    const updateSignInUser = (name) => {
+        const profile = { displayName: name}
         updateUser(profile)
             .then(() => { })
             .catch(error => {
