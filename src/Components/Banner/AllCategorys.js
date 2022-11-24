@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../Context/Authprovider';
 const AllCategorys = () => {
+    const { user } = useContext(AuthContext);
     const handleAddtoService = event => {
         event.preventDefault();
         const imgHostKey = process.env.REACT_APP_Imgbb_Key;
@@ -17,9 +19,12 @@ const AllCategorys = () => {
             .then(res => res.json())
             .then(imgData => {
                 if (imgData.success) {
+                    const userName = user?.displayName;
+                    const userEmail = user?.email;
                     const image = imgData.data.url
                     const Title = form.title.value;
                     const description = form.description.value;
+                    const place = form.place.value;
                     const condition = form.condition.value;
                     const price = form.price.value;
                     const use = form.use.value;
@@ -31,6 +36,7 @@ const AllCategorys = () => {
                     const product = {
                         title: Title,
                         price: price,
+                        place: place,
                         orgPrice: orgPrice,
                         category: category,
                         image: image,
@@ -40,6 +46,8 @@ const AllCategorys = () => {
                         use: use,
                         createAt,
                         postedTime: getFullTime,
+                        userName,
+                        userEmail
                         // photoURL:photoURL 
                     }
                     console.log(product)

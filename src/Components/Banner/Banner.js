@@ -9,10 +9,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 const Banner = () => {
     return (
         <div className='mt-24'>
-            <div className=' flex justify-between h-[400px] w-10/12 mx-auto items-center my-14'>
-                <div className='w-1/2 '>
-                    <h2 className='text-xl font-bold mb-10'>Want to buy a second hand Phone? <br />Come to us <br />We can give you best phone in your budget </h2>
-                    <img className='w-4/5 h-[400px]' src="banner-photo.png" alt="" />
+            <div className='none lg:flex justify-between h-full lg:h-[400px] w-full lg:w-10/12 mx-auto items-center my-14'>
+                <div className='w-full lg:w-1/2 '>
+
+                    <img className='lg:w-4/5 lg:h-[400px]' src="banner-photo.png" alt="" />
                 </div>
                 {/* <div className="carousel w-1/2 shadow-xl">
                     <div id="slide1" className="carousel-item relative w-full">
@@ -55,13 +55,16 @@ const Banner = () => {
                     scrollbar={{ draggable: true }}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
-                    className="w-9/12 rounded-md"
+                    className="w-full lg:w-9/12 rounded-md"
                 >
                     <SwiperSlide> <img alt="" src="banner.jpg" className="w-full h-full" /></SwiperSlide>
                     <SwiperSlide><img alt="" src="banner2.jpeg" className="w-full h-full" /></SwiperSlide>
                     <SwiperSlide><img alt="" src="tablet.png" className="w-full h-full" /></SwiperSlide>
                     <SwiperSlide>Slide 4</SwiperSlide>
                 </Swiper>
+            </div>
+            <div>
+                <h2 className='w-10/12 mx-auto bg-base-200 text-3xl border p-3 shadow font-bold mb-10 text-center'>Want to buy a second-hand Phone? <br /><span className='font-extrabold text-4xl text-gray-700'>Come to us</span> <br />We can provide you best phone in your budget </h2>
             </div>
             <div className='mt-20'>
                 <Catagory></Catagory>
