@@ -3,11 +3,19 @@ import { AuthContext } from '../../Context/Authprovider';
 import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
+import useToken from '../../Hooks/useToken';
 const SignUp = () => {
     const { createUser, updateUser, providerLogin } = useContext(AuthContext);
+    const [createdUserEmail,setCreatedUserEmail]=useState("");
+    const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
     const googleProvider = new GoogleAuthProvider();
     const [signUpError, setsignUpError] = useState("")
+
+    if(token){
+        navigate("/");
+    }
+
     const handleSignup = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -30,9 +38,14 @@ const SignUp = () => {
                     },
                     body: JSON.stringify(usersInfo)
                 })
-                form.reset();
-                navigate("/");
+                    .then(res => res.json())
+                    .then(data => {
+                        setCreatedUserEmail(email);
+                    })
+                // navigate("/");
+                // form.reset();
             })
+
             .catch(err => {
                 setsignUpError(err.message);
                 console.error(err)
@@ -45,7 +58,7 @@ const SignUp = () => {
                 const email = user?.email
                 const name = user?.displayName
                 console.log(user);
-                const usersInfo = { name,email}
+                const usersInfo = { name, email }
                 fetch("http://localhost:5000/users", {
                     method: "POST",
                     headers: {
@@ -53,7 +66,11 @@ const SignUp = () => {
                     },
                     body: JSON.stringify(usersInfo)
                 })
-                navigate("/");
+                    .then(res => res.json())
+                    .then(data => {
+                        setCreatedUserEmail(email)
+                    })
+
             })
             .catch(error => {
                 console.log(error);
@@ -61,7 +78,7 @@ const SignUp = () => {
             })
     }
     const updateSignInUser = (name) => {
-        const profile = { displayName: name,}
+        const profile = { displayName: name, }
         updateUser(profile)
             .then(() => { })
             .catch(error => {
