@@ -21,9 +21,9 @@ const SignUp = () => {
         const form = event.target;
         const email = form.email.value;
         const name = form.name.value;
-        const role = form.role.value;
+        const userType = form.userType.value;
         const password = form.password.value;
-        const usersInfo = { email, name, role }
+        const usersInfo = { email, name, userType }
         console.log(usersInfo)
         setsignUpError("");
         createUser(email, password)
@@ -52,31 +52,32 @@ const SignUp = () => {
             });
     };
     const handleGoogleSignin = () => {
+        const userType = "Buyer";
         providerLogin(googleProvider)
-            .then(result => {
-                const user = result.user;
-                const email = user?.email
-                const name = user?.displayName
-                console.log(user);
-                const usersInfo = { name, email }
-                fetch("http://localhost:5000/users", {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json"
-                    },
-                    body: JSON.stringify(usersInfo)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        setCreatedUserEmail(email)
-                    })
-
-            })
-            .catch(error => {
-                console.log(error);
-                toast.error(error.message)
-            })
+        .then(result=>{
+            saveTodb(result?.user?.displayName,
+                result?.user?.email,
+                userType);
+        })
+        .catch(err=>console.error(err));
     }
+    const saveTodb = (name, email, userType)=>{
+        const user ={name,email,userType};
+        fetch(`http://localhost:5000/users/${email}`,{
+            method:"PUT",
+            headers:{
+                "content-type":"application/json",
+            },
+            body:JSON.stringify(user)
+        })
+        .then(res=>res.json())
+        .then(result=>{
+                console.log(result)
+                setCreatedUserEmail(email);
+                toast.success("user created successfully")
+        });
+    };
+
     const updateSignInUser = (name) => {
         const profile = { displayName: name, }
         updateUser(profile)
@@ -115,7 +116,7 @@ const SignUp = () => {
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlhtmlFor="role">
                                     Select Role
                                 </label>
-                                <select name='role' className="select select-bordered w-full  mb-5">
+                                <select name='userType' className="select select-bordered w-full  mb-5">
                                     <option>Buyer</option>
                                     <option>Seller</option>
 

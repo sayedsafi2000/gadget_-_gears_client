@@ -31,7 +31,7 @@ const Dashboard = () => {
     }
     return (
         <div>
-            <h2>My Booking Products</h2>
+            <h2>My Order</h2>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>

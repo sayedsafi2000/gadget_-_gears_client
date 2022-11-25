@@ -16,9 +16,11 @@ const AuthProvider = ({ children }) => {
         return () => unsubscribe();
     }, []);
     const providerLogin = (provider) => {
+        setLoading(true)
         return signInWithPopup(auth, provider)
     }
     const updateUser = (userInfo) => {
+        setLoading(true)
         return updateProfile(auth.currentUser, userInfo);
     }
     const createUser = (email, password) => {

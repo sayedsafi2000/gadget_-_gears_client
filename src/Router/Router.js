@@ -14,6 +14,7 @@ import Login from "../Components/Login/Login";
 import SignUp from "../Components/SignUp/SignUp";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import SharedRouter from "./SharedRouter";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -28,10 +29,6 @@ const router = createBrowserRouter([
                 path: "/service/:category",
                 element: <PrivateRoute><DisplayCategory></DisplayCategory></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/category/${params.category}`)
-            },
-            {
-                path: "/addProducts",
-                element: <AllCategorys></AllCategorys>
             },
             {
                 path: "/signup",
@@ -62,6 +59,12 @@ const router = createBrowserRouter([
                 path: "/dashboard/allusers",
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
+            
+            {
+                path: "/dashboard/addproduct",
+                element:<SharedRouter><AllCategory></AllCategory></SharedRouter>
+            },
+            
         ]
     }
 ])
