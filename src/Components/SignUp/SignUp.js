@@ -1,9 +1,12 @@
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../Context/Authprovider';
 import { Link, useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
+import { GoogleAuthProvider } from 'firebase/auth';
 const SignUp = () => {
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, providerLogin } = useContext(AuthContext);
     const navigate = useNavigate();
+    const googleProvider = new GoogleAuthProvider();
     const [signUpError, setsignUpError] = useState("")
     const handleSignup = (event) => {
         event.preventDefault();
@@ -12,7 +15,7 @@ const SignUp = () => {
         const name = form.name.value;
         const role = form.role.value;
         const password = form.password.value;
-        const usersInfo = {email,name,role}
+        const usersInfo = { email, name, role }
         console.log(usersInfo)
         setsignUpError("");
         createUser(email, password)
@@ -20,12 +23,12 @@ const SignUp = () => {
                 const user = result.user;
                 updateSignInUser(name)
                 console.log(user);
-                fetch("http://localhost:5000/users",{
-                    method:"POST",
-                    headers:{
-                        "content-type":"application/json"
+                fetch("http://localhost:5000/users", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
                     },
-                    body:JSON.stringify(usersInfo)
+                    body: JSON.stringify(usersInfo)
                 })
                 form.reset();
                 navigate("/");
@@ -34,9 +37,31 @@ const SignUp = () => {
                 setsignUpError(err.message);
                 console.error(err)
             });
+    };
+    const handleGoogleSignin = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                const email = user?.email
+                const name = user?.displayName
+                console.log(user);
+                const usersInfo = { name,email}
+                fetch("http://localhost:5000/users", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(usersInfo)
+                })
+                navigate("/");
+            })
+            .catch(error => {
+                console.log(error);
+                toast.error(error.message)
+            })
     }
     const updateSignInUser = (name) => {
-        const profile = { displayName: name}
+        const profile = { displayName: name,}
         updateUser(profile)
             .then(() => { })
             .catch(error => {
@@ -85,6 +110,7 @@ const SignUp = () => {
                                 Already have an account? <Link to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</Link>
                             </p>
                         </form>
+                        <button onClick={handleGoogleSignin} className="btn btn-ghost  mx-auto w-full">Google</button>
                     </div>
                 </div>
             </div>

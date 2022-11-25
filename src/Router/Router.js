@@ -3,6 +3,7 @@ import AllCategorys from "../Components/Banner/AllCategorys";
 import AllCategory from "../Components/Banner/AllCategorys";
 import Banner from "../Components/Banner/Banner";
 import DisplayCategory from "../Components/Banner/DisplayCategory";
+import Blog from "../Components/Blog/Blog";
 import Categories from "../Components/Categories/Categories";
 import Dashboard from "../Components/DashBoard/Dashboard";
 import Error404 from "../Components/ErrorHandle/Error404";
@@ -37,7 +38,11 @@ const router = createBrowserRouter([
             {
                 path:"/login",
                 element:<Login></Login>
-            }
+            },
+            {
+                path:"/blog",
+                element:<Blog></Blog>
+            },
            
         ]
         
