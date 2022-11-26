@@ -35,9 +35,7 @@ const Login = () => {
     }
     return (
         <div>
-            <h2>Please Login</h2>
             <section className="bg-gray-50 dark:bg-gray-900 lg:flex justify-center">
-
                 <div className='w-full lg:w-1/2 '>
                     <img className='w-full lg:w-[600px]' src="login.png" alt="" />
                 </div>

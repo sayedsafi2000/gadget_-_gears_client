@@ -1,12 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import AllCategorys from "../Components/Banner/AllCategorys";
 import AllCategory from "../Components/Banner/AllCategorys";
 import Banner from "../Components/Banner/Banner";
 import DisplayCategory from "../Components/Banner/DisplayCategory";
 import Blog from "../Components/Blog/Blog";
-import Categories from "../Components/Categories/Categories";
 import AllUsers from "../Components/DashBoard/AllUsers";
 import Dashboard from "../Components/DashBoard/Dashboard";
+import MyProduct from "../Components/DashBoard/MyProduct";
 import Error404 from "../Components/ErrorHandle/Error404";
 import DashBoardLayout from "../Components/Layout/DashBoardLayout";
 import Main from "../Components/Layout/Main";
@@ -15,7 +14,6 @@ import SignUp from "../Components/SignUp/SignUp";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
-import SharedRouter from "./SharedRouter";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -53,7 +51,7 @@ const router = createBrowserRouter([
         errorElement: <Error404></Error404>,
         children: [
             {
-                path: "/dashboard",
+                path: "/dashboard/myorder",
                 element: <Dashboard></Dashboard>
             },
             {
@@ -65,6 +63,10 @@ const router = createBrowserRouter([
                 path: "/dashboard/addproduct",
                 element:<SellerRoute><AllCategory></AllCategory></SellerRoute>
             },
+            {
+                path:"/dashboard/myproduct",
+                element:<MyProduct></MyProduct>
+            }
             
         ]
     }

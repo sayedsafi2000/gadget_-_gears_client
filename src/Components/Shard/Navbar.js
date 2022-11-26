@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/Authprovider';
+import { FaUserCircle } from 'react-icons/fa';
 const Navbar = () => {
     const navigate = useNavigate();
     const { user, logOut } = useContext(AuthContext);
@@ -11,16 +12,15 @@ const Navbar = () => {
     }
     const menuItem = <React.Fragment>
         {user?.uid ?
-        <>
-        <li><button onClick={handleLogout}>Sign Out</button></li>
-        <li><Link to="/dashboard">Dashboard</Link></li>
-        </>
-        :
-        <li><Link to="/login">Login</Link></li>
-         }
-        <li><Link to="/blog">Blog</Link></li>
-        
-
+            <>
+                <li><button className='font-bold' onClick={handleLogout}>Sign Out</button></li>
+                <li><Link className='font-bold' to="/dashboard">Dashboard</Link></li>
+                
+            </>
+            :
+            <li><Link className='font-bold' to="/login">Login</Link></li>
+        }
+        <li><Link className='font-bold' to="/blog">Blog</Link></li>
     </React.Fragment>
     return (
         <div className="navbar bg-base-200 mb-10">
@@ -34,7 +34,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <Link to="/" className=" w-[60px] mr-5 normal-case text-xl"><img src="logo.jpg" alt="" /></Link>
-                <Link to="/" className=" normal-case text-xl">Gadget & Gears</Link>
+                <Link to="/" className=" normal-case text-xl font-bold">Gadget & Gears</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

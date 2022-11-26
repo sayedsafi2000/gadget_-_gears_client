@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
 import useToken from '../../Hooks/useToken';
+import { FaGoogle } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 const SignUp = () => {
     const { createUser, updateUser, providerLogin } = useContext(AuthContext);
     const [createdUserEmail,setCreatedUserEmail]=useState("");
@@ -128,7 +130,9 @@ const SignUp = () => {
                                 Already have an account? <Link to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</Link>
                             </p>
                         </form>
-                        <button onClick={handleGoogleSignin} className="btn btn-ghost  mx-auto w-full">Google</button>
+                        <button onClick={handleGoogleSignin} className="btn bg-gray-100 text-black border-1 mx-auto w-full"> <span className=' text-xl mr-4'>
+                            <FcGoogle ></FcGoogle>
+                            </span> Sign in with Google</button>
                     </div>
                 </div>
             </div>

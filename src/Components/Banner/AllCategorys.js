@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
+import {useNavigate} from "react-router-dom"
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Context/Authprovider';
 const AllCategorys = () => {
+    const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     const handleAddtoService = event => {
         event.preventDefault();
@@ -21,7 +23,7 @@ const AllCategorys = () => {
                 if (imgData.success) {
                     const userName = user?.displayName;
                     const userEmail = user?.email;
-                    const image = imgData.data.url
+                    const image = imgData.data.url;
                     const Title = form.title.value;
                     const description = form.description.value;
                     const place = form.place.value;
@@ -62,7 +64,9 @@ const AllCategorys = () => {
                         .then(data => {
                             form.reset();
                             toast.success("Service Added Successfully")
-                            console.log(data)
+                            // console.log(data)
+                            navigate("/dashboard/myproduct")
+                            
                         })
                         .catch(err => console.log(err))
                 }
@@ -95,13 +99,13 @@ const AllCategorys = () => {
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="use">
                         Year Of Use
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name='use' id="use" type="number" placeholder="How long you used this phone" />
+                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name='use' id="use" type="text" placeholder="How long you used this phone" />
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="place">
                         Place You wanna meet
                     </label>
-                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name='place' id="place" type="text" placeholder="Place You wanna meet" />
+                    <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name='place' id="place" type="text" placeholder="Dhaka, Sylhet, Comilla " />
                 </div>
                 <div>
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="category">

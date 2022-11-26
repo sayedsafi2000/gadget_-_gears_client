@@ -13,7 +13,7 @@ const Catagory = () => {
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-10'>
                 {
                     category?.map((category) => 
-                        <div key={category._id} className="card card-compact w-11/12 lg:w-80 mx-auto shadow-xl">
+                        <div key={category._id} className="card card-compact bg-base-300 w-11/12 lg:w-80 mx-auto shadow-xl">
                             <figure><img src={category.image} alt="phone" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{category.name}</h2>

@@ -9,8 +9,7 @@ import Navbar from '../Shard/Navbar';
 
 const DashBoardLayout = () => {
     const { user } = useContext(AuthContext);
-    const [isAdmin] = useAdmin(user?.email)
-    const [isBuyer] = useBuyer(user?.email);
+    const [isAdmin] = useAdmin(user?.email);
     const [isSeller] = useSeller(user.email)
 
     return (
@@ -25,11 +24,11 @@ const DashBoardLayout = () => {
                     <label htmlFor="dashboard-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
 
-                        <li><Link to="/dashboard">My Orders</Link></li>
+                        <li><Link to="/dashboard/myorder">My Orders</Link></li>
                         {
                             isSeller && <>
                                 <li><Link to="/dashboard/addproduct">Add a Product</Link></li>
-                                <li><Link to="/dashboard/myproducts">My Products</Link></li>
+                                <li><Link to="/dashboard/myproduct">My Products</Link></li>
                             </>
                         }
                         {
