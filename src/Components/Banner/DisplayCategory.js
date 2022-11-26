@@ -6,8 +6,9 @@ import BookingModal from '../DashBoard/BookingModal';
 
 const DisplayCategory = () => {
     const category = useLoaderData();
-    const {loading} =useContext(AuthContext);
+    const { loading,user } = useContext(AuthContext);
     const [booking, setBooking] = useState(null);
+    
     if (loading) {
         return <div class="text-center">
             <div role="status">
@@ -42,7 +43,12 @@ const DisplayCategory = () => {
                                 <div>
                                     <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Product's Condition: {catagories.condition}</h5>
                                     <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">We will meet :{catagories.place}</h5>
-                                    <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Name: {catagories.userName}</h5>
+                                    <div>
+                                        <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Name: {catagories.userName}</h5>
+                                        {
+                                            user?.verify && <p>ok</p>
+                                        }
+                                    </div>
                                     <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Email: {catagories.userEmail}</h5>
                                     <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Phone: {catagories.phone}</h5>
                                     <h5 className="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">Original Price: ${catagories.orgPrice}</h5>

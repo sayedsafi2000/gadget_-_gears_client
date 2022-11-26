@@ -30,7 +30,6 @@ const Banner = () => {
                     <SwiperSlide> <img alt="" src="banner.jpg" className="w-full h-full" /></SwiperSlide>
                     <SwiperSlide><img alt="" src="banner2.jpeg" className="w-full h-full" /></SwiperSlide>
                     <SwiperSlide><img alt="" src="tablet.png" className="w-full h-full" /></SwiperSlide>
-                    <SwiperSlide>Slide 4</SwiperSlide>
                 </Swiper>
             </div>
             <div>

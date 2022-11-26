@@ -54,7 +54,7 @@ const AllUsers = () => {
                             <th>Email</th>
                             <th>Buyer/Seller</th>
                             <th>Delete</th>
-                            <th>Make Admin</th>
+                            <th>Make Verify User</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,7 +63,7 @@ const AllUsers = () => {
                                 <th>{i + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td>{user.role}</td>
+                                <td>{user.userType}</td>
                                 <td><button onClick={()=>handleDelete(user._id)} className='btn btn-xs  bg-red-500' >Delete</button></td>
                                 <td>{user?.verify !== "verified" && <button onClick={() => handleMakeVerifi(user._id)} className='btn btn-xs  bg-blue-500' >Verify</button>}</td>
                             </tr>)

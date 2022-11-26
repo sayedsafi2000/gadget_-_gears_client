@@ -14,6 +14,7 @@ import Login from "../Components/Login/Login";
 import SignUp from "../Components/SignUp/SignUp";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
+import SellerRoute from "./SellerRoute";
 import SharedRouter from "./SharedRouter";
 const router = createBrowserRouter([
     {
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
             
             {
                 path: "/dashboard/addproduct",
-                element:<SharedRouter><AllCategory></AllCategory></SharedRouter>
+                element:<SellerRoute><AllCategory></AllCategory></SellerRoute>
             },
             
         ]
