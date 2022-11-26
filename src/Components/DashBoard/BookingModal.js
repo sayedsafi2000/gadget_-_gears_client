@@ -11,13 +11,17 @@ const BookingModal = ({ booking }) => {
         const email = form.email.value;
         const title = form.title.value;
         const price = form.price.value;
+        const phone = form.phone.value;
+        const location = form.location.value;
         const image = booking.image;
         const bookings={
             name,
             email,
             title,
             price,
-            image
+            image,
+            phone,
+            location
         }
 
         fetch("http://localhost:5000/booking", {
@@ -57,7 +61,15 @@ const BookingModal = ({ booking }) => {
                             <label className='block' htmlFor="">Product Price</label>
                             <input name='price' readOnly defaultValue={booking?.price} type="text" placeholder="Type here" className="input input-bordered w-full" />
                         </div>
-                        <input className='btn w-full  bg-gray-900' type="submit" value="Booking" />
+                        <div className=''>
+                            <label className='block' htmlFor="">Phone Number</label>
+                            <input name='phone' type="text" placeholder="Enter Your Phone Number" className="input input-bordered w-full" />
+                        </div>
+                        <div className=''>
+                            <label className='block' htmlFor="">Meeting Location</label>
+                            <input name='location' type="text" placeholder="Where you want to meet" className="input input-bordered w-full" />
+                        </div>
+                        <input className='btn w-full  mt-5 bg-gray-900' type="submit" value="Booking" />
                     </form>
                 </label>
             </label>

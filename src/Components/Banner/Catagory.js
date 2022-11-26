@@ -1,11 +1,16 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 const Catagory = () => {
     const [category, setCategory] = useState();
     useEffect(() => {
-        fetch("http://localhost:5000/category")
-            .then(res => res.json())
-            .then(data => setCategory(data))
+        // fetch("http://localhost:5000/category")
+        //     .then(res => res.json())
+        //     .then(data => setCategory(data))
+        axios.get("http://localhost:5000/category")
+        .then(data=>{
+            setCategory(data.data)
+        })
     }, [])
     return (
         <div>
@@ -19,8 +24,8 @@ const Catagory = () => {
                                 <h2 className="card-title">{category.name}</h2>
                                 <p>Select your category for your needed product</p>
                                 <div className="card-actions justify-center">
-                                    <Link to={`/service/${category.category}`}>
-                                        <button className="btn bg-gray-600 my-5 text-white">View all {category.name}</button>
+                                    <Link to={`/service/${category._id}`}>
+                                        <button className="btn bg-blue-700 my-5 text-white">View all {category.name}</button>
                                     </Link>
                                 </div>
                             </div>

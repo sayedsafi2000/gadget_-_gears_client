@@ -1,14 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Context/Authprovider';
-import Categories from '../Categories/Categories';
 import BookingModal from '../DashBoard/BookingModal';
-
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { GoVerified } from 'react-icons/go';
 const DisplayCategory = () => {
-    const category = useLoaderData();
-    const { loading,user } = useContext(AuthContext);
+    const categoryLoad = useLoaderData();
+    const { loading } = useContext(AuthContext);
     const [booking, setBooking] = useState(null);
-    
+    const [productData, setproductData] = useState([]);
+    const { data: category = [] } = useQuery({
+        queryKey: ["products", categoryLoad.category],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/products?category=${categoryLoad.category}`)
+            const data = await res.json()
+            return data;
+        }
+    })
+    useEffect(() => {
+        axios.get(`http://localhost:5000/users`)
+            .then(data => setproductData(data.data))
+        }, [])
+
     if (loading) {
         return <div class="text-center">
             <div role="status">
@@ -36,28 +50,36 @@ const DisplayCategory = () => {
                             </Link>
 
                             <div class="px-5 pb-5">
-                                <h5 className="mb-2 text-sm  tracking-tight text-yellow-700 dark:text-white">Item posted on:{catagories.postedTime}</h5>
+                                <h5 className="mb-2 text-sm  tracking-tight text-yellow-700 dark:text-white">Item posted on: <span className='text-sm text-gray-600'> </span> {catagories.postedTime}</h5>
                                 <Link href="#">
-                                    <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{catagories.title}</h5>
+                                    <h5 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white"> <span className='text-sm text-gray-600'> </span>{catagories.title} </h5>
                                 </Link>
                                 <div>
-                                    <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Product's Condition: {catagories.condition}</h5>
-                                    <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">We will meet :{catagories.place}</h5>
-                                    <div>
-                                        <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Name: {catagories.userName}</h5>
+                                    <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Product's Condition: <span className='text-sm text-gray-600'> {catagories.condition} </span></h5>
+                                    <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Location :<span className='text-sm text-gray-600'>{catagories.place} </span> </h5>
+                                    <div className='flex justify-between items-center'>
+                                        <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Name: <span className='text-sm text-gray-600'> {catagories.userName}</span> </h5>
                                         {
-                                            user?.verify && <p>ok</p>
+                                            productData.map(users =>
+                                                <div key={users._id} className="text-sm">
+                                                {
+                                                    users.verify === "verified" ? <h2 className='text-blue-800'><GoVerified></GoVerified> </h2>
+                                                    : ""
+                                                }
+                                                </div>
+                                            )
+
                                         }
                                     </div>
-                                    <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Email: {catagories.userEmail}</h5>
-                                    <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Phone: {catagories.phone}</h5>
-                                    <h5 className="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">Original Price: ${catagories.orgPrice}</h5>
-                                    <h5 className="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">About Phone: {catagories.description}</h5>
+                                    <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Email: <span className='text-sm text-gray-600'>{catagories.userEmail} </span> </h5>
+                                    <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Phone: <span className='text-sm text-gray-600'>{catagories.phone} </span> </h5>
+                                    <h5 className="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">Original Price: <span className='text-sm text-gray-600'>${catagories.orgPrice} </span> </h5>
+                                    <h5 className="mb-2 text-sm font-semibold tracking-tight text-gray-900 dark:text-white">About Phone: <span className='text-sm text-gray-600'> {catagories.description}</span> </h5>
                                 </div>
                                 <div className=" flex items-center justify-between mb-6">
-                                    <span className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">Re-sale Price ${catagories.price}</span>
+                                    <span className="mb-2 text-xl font-bold text-gray-900 dark:text-white">Re-sale Price <span className='text-sm text-gray-600'> ${catagories.price} </span></span>
                                 </div>
-                                <label onClick={() => setBooking(catagories)} htmlFor="my-modal-4" className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">open modal</label>
+                                <label onClick={() => setBooking(catagories)} htmlFor="my-modal-4" className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Book Now</label>
 
                             </div>
                         </div>

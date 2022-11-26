@@ -6,6 +6,7 @@ import Blog from "../Components/Blog/Blog";
 import AllUsers from "../Components/DashBoard/AllUsers";
 import Dashboard from "../Components/DashBoard/Dashboard";
 import MyProduct from "../Components/DashBoard/MyProduct";
+import Payment from "../Components/DashBoard/Payment";
 import SellerUser from "../Components/DashBoard/SellerUser";
 import Error404 from "../Components/ErrorHandle/Error404";
 import DashBoardLayout from "../Components/Layout/DashBoardLayout";
@@ -27,9 +28,9 @@ const router = createBrowserRouter([
                 element: <Banner></Banner>
             },
             {
-                path: "/service/:category",
+                path: "/service/:id",
                 element: <PrivateRoute><DisplayCategory></DisplayCategory></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.category}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
             },
             {
                 path: "/signup",
@@ -72,6 +73,11 @@ const router = createBrowserRouter([
             {
                 path:"/dashboard/myproduct",
                 element:<MyProduct></MyProduct>
+            },
+            {
+                path:"/dashboard/payment/:id",
+                element:<Payment></Payment>,
+                loader:({params})=> fetch(`http://localhost:5000/bookings/${params.id}`)
             }
             
         ]
