@@ -1,19 +1,18 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 const useBuyer = email => {
     const [isBuyer, setIsBuyer] = useState(false);
-    const [isBuyerLoading, setIsBuyerLoading] = useState(true);
+    const [isBuyerLoading,setIsBuyerLoading]=useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/buyer/${email}
-            `)
+            fetch(`http://localhost:5000/users/buyer/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
-                    setIsBuyer(data.isBuyerLoading)
+                    setIsBuyer(data.isBuyer);
                     setIsBuyerLoading(false)
-                })
+                });
         }
-    }, [email])
-    return [isBuyer, isBuyerLoading];
+    }, [email]);
+    return [isBuyer,isBuyerLoading];
 }
 export default useBuyer;

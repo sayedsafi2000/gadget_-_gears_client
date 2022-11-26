@@ -12,6 +12,7 @@ import Main from "../Components/Layout/Main";
 import Login from "../Components/Login/Login";
 import SignUp from "../Components/SignUp/SignUp";
 import AdminRoute from "./AdminRoute";
+import BuyersRoute from "./BuyersRoute";
 import PrivateRoute from "./PrivateRoute";
 import SellerRoute from "./SellerRoute";
 const router = createBrowserRouter([
@@ -47,12 +48,12 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
         errorElement: <Error404></Error404>,
+        element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
         children: [
             {
                 path: "/dashboard/myorder",
-                element: <Dashboard></Dashboard>
+                element: <BuyersRoute><Dashboard></Dashboard></BuyersRoute>
             },
             {
                 path: "/dashboard/allusers",
