@@ -6,6 +6,7 @@ import Blog from "../Components/Blog/Blog";
 import AllUsers from "../Components/DashBoard/AllUsers";
 import Dashboard from "../Components/DashBoard/Dashboard";
 import MyProduct from "../Components/DashBoard/MyProduct";
+import SellerUser from "../Components/DashBoard/SellerUser";
 import Error404 from "../Components/ErrorHandle/Error404";
 import DashBoardLayout from "../Components/Layout/DashBoardLayout";
 import Main from "../Components/Layout/Main";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/allusers",
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            {
+                path: "/dashboard/seller",
+                element: <AdminRoute><SellerUser></SellerUser></AdminRoute>
             },
             
             {

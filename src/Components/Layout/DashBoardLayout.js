@@ -19,7 +19,7 @@ const DashBoardLayout = () => {
             <div className="drawer drawer-mobile">
                 <input id="dashboard-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content ">
-                    <h2 className='text-4xl font-bold'>Gadget & Gears DashBoard</h2>
+                    <h2 className='text-4xl font-bold mb-20' >Gadget & Gears DashBoard</h2>
                     <Outlet></Outlet>
                 </div>
                 <div className="drawer-side">
@@ -37,6 +37,7 @@ const DashBoardLayout = () => {
                         }
                         {
                             isAdmin && <>
+                                <li><Link to="/dashboard/seller">All Seller</Link></li>
                                 <li><Link to="/dashboard/allusers">Buyers & Sellers</Link></li>
                             </>
                         }

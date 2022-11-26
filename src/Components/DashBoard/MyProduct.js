@@ -10,6 +10,20 @@ const MyProduct = () => {
             .then(data => setProduct(data))
     }, [user?.email])
 
+    const handleDelete = id => {
+        fetch(`http://localhost:5000/product/seller/${id}`,{
+            method:"DELETE",
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.deletedCount > 0){
+                const remainingProduct = product.filter(prod =>prod._id !==id)
+                setProduct(remainingProduct);
+            }
+            
+        })
+    }
     return (
         <div>
             <div className="overflow-x-auto">
@@ -32,8 +46,8 @@ const MyProduct = () => {
                                 <td>{pro?.title}</td>
                                 <td>{pro?.price}</td>
                                 <td>Sold</td>
-                                <td><button  className='btn btn-xs  bg-red-500' >Delete</button></td>
-                                <td> <button  className='btn btn-xs  bg-blue-500' >Advertisement</button></td>
+                                <td><button onClick={()=>handleDelete(pro?._id)} className='btn btn-xs  bg-red-500' >Delete</button></td>
+                                <td> <button className='btn btn-xs  bg-blue-500' >Advertisement</button></td>
                             </tr>)
                         }
                     </tbody>

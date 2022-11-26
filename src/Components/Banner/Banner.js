@@ -38,6 +38,65 @@ const Banner = () => {
             <div className='mt-20'>
                 <Catagory></Catagory>
             </div>
+            <div>
+                <h2 className="text-3xl text-center mt-10 mb-5 font-bold">Our Buyers Review</h2>
+                <div className='w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-5 '>
+                    <div className="card shadow-xl bg-base-200">
+                        <figure className="px-10 pt-10">
+                            <img src="men.jpeg" alt="Shoes" className="rounded-full w-12 h-12 " />
+                        </figure>
+                        <div className="card-body items-center text-center">
+                            <h2 className="card-title">Devid Gragory</h2>
+                            <p>I am very setisfied to buy tab from gedget and gears.</p>
+                            <div className="card-actions">
+                                <div className="rating">
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked/>
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card bg-base-200 shadow-xl">
+                        <figure className="px-10 pt-10">
+                            <img src="men3.jpeg" alt="Shoes" className="rounded-full w-12 h-12 " />
+                        </figure>
+                        <div className="card-body items-center text-center">
+                            <h2 className="card-title">Matt Mardogh</h2>
+                            <p>I am very setisfied to buy tab from gedget and gears.</p>
+                            <div className="card-actions">
+                                <div className="rating">
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card bg-base-200 shadow-xl">
+                        <figure className="px-10 pt-10">
+                            <img src="men4.jpeg" alt="Shoes" className="rounded-full w-12 h-12 " />
+                        </figure>
+                        <div className="card-body items-center text-center">
+                            <h2 className="card-title">Heron Mollah</h2>
+                            <p>Not so good,Some fruad are also here.</p>
+                            <div className="card-actions">
+                                <div className="rating">
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
