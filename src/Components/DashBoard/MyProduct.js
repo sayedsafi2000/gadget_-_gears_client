@@ -24,6 +24,18 @@ const MyProduct = () => {
             
         })
     }
+
+    const handleAdvertise =id => {
+        console.log(id)
+        fetch(`http://localhost:5000/products/advertise/${id}`,{
+            method:"PATCH",
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+        })
+    }
+
     return (
         <div>
             <div className="overflow-x-auto">
@@ -47,7 +59,7 @@ const MyProduct = () => {
                                 <td>{pro?.price}</td>
                                 <td>Sold</td>
                                 <td><button onClick={()=>handleDelete(pro?._id)} className='btn btn-xs  bg-red-500' >Delete</button></td>
-                                <td> <button className='btn btn-xs  bg-blue-500' >Advertisement</button></td>
+                                <td> <button onClick={() => handleAdvertise(pro?._id)} className='btn btn-xs  bg-blue-500' >Advertisement</button></td>
                             </tr>)
                         }
                     </tbody>

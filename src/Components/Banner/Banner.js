@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import AdvertiseProducts from './AdvertiseProducts';
 const Banner = () => {
     return (
         <div className='mt-24'>
@@ -34,6 +35,9 @@ const Banner = () => {
             </div>
             <div>
                 <h2 className='w-10/12 mx-auto bg-base-200 text-3xl border p-3 shadow font-bold mb-10 text-center'>Want to buy a second-hand Phone? <br /><span className='font-extrabold text-4xl text-gray-700'>Come to us</span> <br />We can provide you best phone in your budget </h2>
+            </div>
+            <div>
+                <AdvertiseProducts></AdvertiseProducts>
             </div>
             <div className='mt-20'>
                 <Catagory></Catagory>
