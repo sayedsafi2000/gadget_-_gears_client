@@ -5,18 +5,18 @@ const MyProduct = () => {
     const { user } = useContext(AuthContext);
     const [product, setProduct] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/seller/product/${user?.email}`)
+        fetch(`https://gadget-and-gears-server.vercel.app/seller/product/${user?.email}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [user?.email])
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/product/seller/${id}`, {
+        fetch(`https://gadget-and-gears-server.vercel.app/product/seller/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (data.deletedCount > 0) {
                     const remainingProduct = product.filter(prod => prod._id !== id)
                     setProduct(remainingProduct);
@@ -24,8 +24,8 @@ const MyProduct = () => {
             })
     }
     const handleAdvertise = id => {
-        console.log(id)
-        fetch(`http://localhost:5000/products/advertise/${id}`, {
+        // console.log(id)
+        fetch(`https://gadget-and-gears-server.vercel.app/products/advertise/${id}`, {
             method: "PATCH",
         })
             .then(res => res.json())

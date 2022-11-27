@@ -24,7 +24,7 @@ const BookingModal = ({ booking }) => {
             location
         }
 
-        fetch("http://localhost:5000/booking", {
+        fetch("https://gadget-and-gears-server.vercel.app/booking", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -33,7 +33,7 @@ const BookingModal = ({ booking }) => {
         })
             .then(res => res.json())
             .then(data =>{
-               console.log(data)
+            //    console.log(data)
                toast.success("Booking successful")
             } )
 

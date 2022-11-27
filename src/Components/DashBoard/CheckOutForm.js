@@ -1,6 +1,7 @@
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import useTitle from '../../Hooks/useTitle';
 
 const CheckOutForm = ({ pay }) => {
     const [cardError, setCardError] = useState("");
@@ -15,7 +16,7 @@ const CheckOutForm = ({ pay }) => {
     // console.log(price)
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://gadget-and-gears-server.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -73,7 +74,7 @@ const CheckOutForm = ({ pay }) => {
                 paidId : _id
 
             }
-            fetch("http://localhost:5000/payments",{
+            fetch("https://gadget-and-gears-server.vercel.app/payments",{
                 method:"POST",
                 headers:{
                     "content-type":"application/json"
@@ -82,7 +83,7 @@ const CheckOutForm = ({ pay }) => {
             })
             .then(res=>res.json())
             .then(data=>{
-                console.log(data)
+                // console.log(data)
                 if(data.insertedId){
                     setSuccess("Your Payment Successfull")
                     setTransactionId(paymentIntent.id);
@@ -92,13 +93,14 @@ const CheckOutForm = ({ pay }) => {
           
           }
           setProcessing(false)
-        //   console.log("paymentIntent",paymentIntent)
 
     }
+    useTitle("CheckOut")
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <CardElement
+            <form className='' onSubmit={handleSubmit}>
+                <h2 className='p-2 text-gray-600 font-bold'>Please enter your card informations</h2>
+                <CardElement className='bg-base-100 p-5'
                     options={{
                         style: {
                             base: {
@@ -125,7 +127,7 @@ const CheckOutForm = ({ pay }) => {
                 {
                     success && <div>
                         <p className='text-green-500'>{success}</p>
-                        <p>Your Transaction Id is: <span className='text-yelloe-600'>{transactionId}</span></p>
+                        <p>Your Transaction Id is: <span className='text-yellow-600'>{transactionId}</span></p>
                     </div>
                 }
             </p>

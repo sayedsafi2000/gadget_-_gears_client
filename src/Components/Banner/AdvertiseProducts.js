@@ -6,7 +6,7 @@ const AdvertiseProducts = () => {
     const { data: advertisementProducts = [] } = useQuery({
         queryKey: ["advertisement"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/advertise-products`,{
+            const res = await fetch(`https://gadget-and-gears-server.vercel.app/advertise-products`,{
                 headers: {
                     authorization: `bearer ${localStorage.getItem("accessToken")}`
                 }
@@ -20,7 +20,7 @@ const AdvertiseProducts = () => {
         <div className=' w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 '>
             {
                 advertisementProducts.map(ads =>
-                    <div className=''>
+                    <div key={ads._id} className=''>
                         <div className=''>
                             <div key={ads._id} className=" bg-base-200  mx-auto shadow-xl">
                                 <h2 className='text-xl text-gray-600 font-bold'>Advertised for {ads.title}</h2>

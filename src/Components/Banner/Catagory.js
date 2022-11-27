@@ -1,17 +1,16 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import useTitle from '../../Hooks/useTitle';
 const Catagory = () => {
     const [category, setCategory] = useState();
     useEffect(() => {
-        // fetch("http://localhost:5000/category")
-        //     .then(res => res.json())
-        //     .then(data => setCategory(data))
-        axios.get("http://localhost:5000/category")
+        axios.get("https://gadget-and-gears-server.vercel.app/category")
         .then(data=>{
             setCategory(data.data)
         })
     }, [])
+
     return (
         <div>
             <h2 className='text-3xl font-bold text-center my-10'>  Select Your Category</h2>

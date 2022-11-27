@@ -4,17 +4,19 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
 import useToken from '../../Hooks/useToken';
-import { FaGoogle } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 const SignUp = () => {
+    // const location = useLocation();
     const { createUser, updateUser, providerLogin } = useContext(AuthContext);
-    const [createdUserEmail,setCreatedUserEmail]=useState("");
+    const [createdUserEmail, setCreatedUserEmail] = useState("");
     const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
+    console.log(createdUserEmail)
+    // const from = location.state?.from?.pathname || "/"
     const googleProvider = new GoogleAuthProvider();
     const [signUpError, setsignUpError] = useState("")
-
-    if(token){
+    if (token) {
+        // navigate(from,{replace: true})
         navigate("/");
     }
 
@@ -26,25 +28,27 @@ const SignUp = () => {
         const userType = form.userType.value;
         const password = form.password.value;
         const usersInfo = { email, name, userType }
-        console.log(usersInfo)
+        console.log(email)
         setsignUpError("");
         createUser(email, password)
             .then(result => {
                 const user = result.user;
                 updateSignInUser(name)
                 console.log(user);
-                fetch("http://localhost:5000/users", {
+                fetch("https://gadget-and-gears-server.vercel.app/users", {
                     method: "POST",
                     headers: {
-                        "content-type": "application/json"
+                        "content-type": "application/json",
                     },
                     body: JSON.stringify(usersInfo)
                 })
                     .then(res => res.json())
                     .then(data => {
+                        console.log(data)
                         setCreatedUserEmail(email);
+                        toast.success("user created successfully");
+                        // navigate("/");
                     })
-                // navigate("/");
                 // form.reset();
             })
 
@@ -56,34 +60,37 @@ const SignUp = () => {
     const handleGoogleSignin = () => {
         const userType = "Buyer";
         providerLogin(googleProvider)
-        .then(result=>{
-            saveTodb(result?.user?.displayName,
-                result?.user?.email,
-                userType);
-        })
-        .catch(err=>console.error(err));
+            .then(result => {
+                saveTodb(result?.user?.displayName,
+                    result?.user?.email,
+                    userType);
+                setCreatedUserEmail(result?.user?.email);
+            })
+            .catch(err => console.error(err));
     }
-    const saveTodb = (name, email, userType)=>{
-        const user ={name,email,userType};
-        fetch(`http://localhost:5000/users/${email}`,{
-            method:"PUT",
-            headers:{
-                "content-type":"application/json",
+    const saveTodb = (name, email, userType) => {
+        const user = { name, email, userType };
+        fetch(`https://gadget-and-gears-server.vercel.app/users/${email}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
             },
-            body:JSON.stringify(user)
+            body: JSON.stringify(user)
         })
-        .then(res=>res.json())
-        .then(result=>{
+            .then(res => res.json())
+            .then(result => {
                 console.log(result)
                 setCreatedUserEmail(email);
-                toast.success("user created successfully")
-        });
+                toast.success("user created successfully");
+                navigate("/");
+            });
     };
 
     const updateSignInUser = (name) => {
         const profile = { displayName: name, }
         updateUser(profile)
-            .then(() => { })
+            .then(() => { 
+            })
             .catch(error => {
                 console.log(error)
             })
@@ -132,7 +139,7 @@ const SignUp = () => {
                         </form>
                         <button onClick={handleGoogleSignin} className="btn bg-gray-100 text-black border-1 mx-auto w-full"> <span className=' text-xl mr-4'>
                             <FcGoogle ></FcGoogle>
-                            </span> Sign in with Google</button>
+                        </span> Sign in with Google</button>
                     </div>
                 </div>
             </div>

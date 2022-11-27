@@ -52,8 +52,8 @@ const AllCategorys = () => {
                         userEmail
                         // photoURL:photoURL 
                     }
-                    console.log(product)
-                    fetch("http://localhost:5000/category/allCategories", {
+                    // console.log(product)
+                    fetch("https://gadget-and-gears-server.vercel.app/category/allCategories", {
                         method: "POST",
                         headers: {
                             "content-type": "application/json"

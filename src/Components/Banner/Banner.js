@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Catagory from './Catagory';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import 'swiper/css';
@@ -7,7 +7,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import AdvertiseProducts from './AdvertiseProducts';
+import useTitle from '../../Hooks/useTitle';
+import { AuthContext } from '../../Context/Authprovider';
 const Banner = () => {
+    const {loading} = useContext(AuthContext);
+    useTitle("Gadget & Gears-Home")
     return (
         <div className='mt-24'>
             <div className='none lg:flex justify-between h-full lg:h-[400px] w-full lg:w-10/12 mx-auto items-center my-14'>
@@ -15,8 +19,6 @@ const Banner = () => {
 
                     <img className='lg:w-4/5 lg:h-[400px]' src="banner-photo.png" alt="" />
                 </div>
-
-
                 <Swiper
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
                     spaceBetween={50}
@@ -55,7 +57,7 @@ const Banner = () => {
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked/>
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                 </div>
                             </div>
@@ -71,7 +73,7 @@ const Banner = () => {
                             <div className="card-actions">
                                 <div className="rating">
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
@@ -89,7 +91,7 @@ const Banner = () => {
                             <div className="card-actions">
                                 <div className="rating">
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400"  />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />

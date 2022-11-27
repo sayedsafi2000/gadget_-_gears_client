@@ -8,8 +8,8 @@ const BuyersRoute = ({ children }) => {
     const [isBuyer,isBuyerLoading] = useBuyer(user?.email);
     const location = useLocation();
     if(loading || isBuyerLoading){
-        return <div class="text-center">
-            <span class="sr-only">Loading...</span>
+        return <div className="text-center">
+            <span className="sr-only">Loading...</span>
         </div>
     }
     if (user && isBuyer) {

@@ -11,16 +11,19 @@ const Navbar = () => {
 
     }
     const menuItem = <React.Fragment>
+        <li><Link className='font-bold text-gray-600' to="/">Home</Link></li>
+        <li><Link className='font-bold text-gray-600' to="/blog">Blog</Link></li>
         {user?.uid ?
             <>
-                <li><button className='font-bold' onClick={handleLogout}>Sign Out</button></li>
-                <li><Link className='font-bold' to="/dashboard">Dashboard</Link></li>
+                <li><Link className='font-bold text-gray-600' to="/dashboard">Dashboard</Link></li>
+                <li><button className='font-bold text-gray-600' onClick={handleLogout}>Sign Out</button></li>
 
             </>
             :
-            <li><Link className='font-bold' to="/login">Login</Link></li>
+            <li><Link className='font-bold text-gray-600' to="/login">Login</Link></li>
         }
-        <li><Link className='font-bold' to="/blog">Blog</Link></li>
+        
+
     </React.Fragment>
     return (
         <div className="navbar bg-base-200 mb-10">

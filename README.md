@@ -10,3 +10,5 @@ Website making process write down below
 8.Create Seller,buyer and admin seperate route.
 
 
+Client Site Live Link :"https://gadgetandgears-926c0.web.app"
+Client Site Repo Link : "https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-sayedsafi2000"
