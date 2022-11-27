@@ -7,6 +7,7 @@ import AllUsers from "../Components/DashBoard/AllUsers";
 import Dashboard from "../Components/DashBoard/Dashboard";
 import MyProduct from "../Components/DashBoard/MyProduct";
 import Payment from "../Components/DashBoard/Payment";
+import ReportedItem from "../Components/DashBoard/ReportedItem";
 import SellerUser from "../Components/DashBoard/SellerUser";
 import Error404 from "../Components/ErrorHandle/Error404";
 import DashBoardLayout from "../Components/Layout/DashBoardLayout";
@@ -59,20 +60,29 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/allusers",
+                errorElement: <Error404></Error404>,
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: "/dashboard/seller",
+                errorElement: <Error404></Error404>,
                 element: <AdminRoute><SellerUser></SellerUser></AdminRoute>
             },
             
             {
                 path: "/dashboard/addproduct",
+                errorElement: <Error404></Error404>,
                 element:<SellerRoute><AllCategory></AllCategory></SellerRoute>
             },
             {
+                path: "/dashboard/report",
+                errorElement: <Error404></Error404>,
+                element:<AdminRoute><ReportedItem></ReportedItem></AdminRoute>
+            },
+            {
                 path:"/dashboard/myproduct",
-                element:<MyProduct></MyProduct>
+                errorElement: <Error404></Error404>,
+                element:<SellerRoute><MyProduct></MyProduct></SellerRoute>
             },
             {
                 path:"/dashboard/payment/:id",

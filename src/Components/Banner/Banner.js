@@ -11,9 +11,12 @@ const Banner = () => {
     return (
         <div className='mt-24'>
             <div className='none lg:flex justify-between h-full lg:h-[400px] w-full lg:w-10/12 mx-auto items-center my-14'>
-                <div className='w-full lg:w-1/2'>
+                <div className='w-full lg:w-1/2 '>
+
                     <img className='lg:w-4/5 lg:h-[400px]' src="banner-photo.png" alt="" />
                 </div>
+
+
                 <Swiper
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
                     spaceBetween={50}
@@ -21,6 +24,7 @@ const Banner = () => {
                     navigation
                     pagination={{ clickable: true }}
                     scrollbar={{ draggable: true }}
+                    className="w-full lg:w-9/12 rounded-md"
                 >
                     <SwiperSlide> <img alt="" src="banner.jpg" className="w-full h-full" /></SwiperSlide>
                     <SwiperSlide><img alt="" src="banner2.jpeg" className="w-full h-full" /></SwiperSlide>
@@ -51,7 +55,7 @@ const Banner = () => {
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked/>
                                     <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                                 </div>
                             </div>

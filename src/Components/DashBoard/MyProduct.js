@@ -11,29 +11,27 @@ const MyProduct = () => {
     }, [user?.email])
 
     const handleDelete = id => {
-        fetch(`http://localhost:5000/product/seller/${id}`,{
-            method:"DELETE",
+        fetch(`http://localhost:5000/product/seller/${id}`, {
+            method: "DELETE",
         })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data)
-            if(data.deletedCount > 0){
-                const remainingProduct = product.filter(prod =>prod._id !==id)
-                setProduct(remainingProduct);
-            }
-            
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.deletedCount > 0) {
+                    const remainingProduct = product.filter(prod => prod._id !== id)
+                    setProduct(remainingProduct);
+                }
+            })
     }
-
-    const handleAdvertise =id => {
+    const handleAdvertise = id => {
         console.log(id)
-        fetch(`http://localhost:5000/products/advertise/${id}`,{
-            method:"PATCH",
+        fetch(`http://localhost:5000/products/advertise/${id}`, {
+            method: "PATCH",
         })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data)
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
     }
 
     return (
@@ -58,8 +56,14 @@ const MyProduct = () => {
                                 <td>{pro?.title}</td>
                                 <td>{pro?.price}</td>
                                 <td>Sold</td>
-                                <td><button onClick={()=>handleDelete(pro?._id)} className='btn btn-xs  bg-red-500' >Delete</button></td>
-                                <td> <button onClick={() => handleAdvertise(pro?._id)} className='btn btn-xs  bg-blue-500' >Advertisement</button></td>
+                                <td><button onClick={() => handleDelete(pro?._id)} className='btn btn-xs  bg-red-500' >Delete</button></td>
+
+                                {
+                                    !pro?.advertisement === true && <td> <button onClick={() => handleAdvertise(pro?._id)} className='btn btn-xs  bg-blue-500' >Advertisement</button></td>
+                                }
+                                {
+                                    pro?.advertisement === true && <span className='px-5'>Advertised</span>
+                                }
                             </tr>)
                         }
                     </tbody>

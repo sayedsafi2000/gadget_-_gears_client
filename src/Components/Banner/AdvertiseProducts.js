@@ -6,14 +6,18 @@ const AdvertiseProducts = () => {
     const { data: advertisementProducts = [] } = useQuery({
         queryKey: ["advertisement"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/advertise-products`)
+            const res = await fetch(`http://localhost:5000/advertise-products`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem("accessToken")}`
+                }
+            })
             const data = res.json()
             return data
         }
     });
 
     return (
-        <div className=' w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10'>
+        <div className=' w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 '>
             {
                 advertisementProducts.map(ads =>
                     <div className=''>

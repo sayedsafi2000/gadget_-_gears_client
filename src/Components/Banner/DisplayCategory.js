@@ -5,10 +5,12 @@ import BookingModal from '../DashBoard/BookingModal';
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { GoVerified } from 'react-icons/go';
+import toast from 'react-hot-toast';
 const DisplayCategory = () => {
     const categoryLoad = useLoaderData();
     const { loading } = useContext(AuthContext);
     const [booking, setBooking] = useState(null);
+    const [reportedItem, setreportedItem] = useState(null);
     const [productData, setproductData] = useState([]);
     const { data: category = [] } = useQuery({
         queryKey: ["products", categoryLoad.category],
@@ -21,7 +23,7 @@ const DisplayCategory = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/users`)
             .then(data => setproductData(data.data))
-        }, [])
+    }, [])
 
     if (loading) {
         return <div class="text-center">
@@ -59,7 +61,7 @@ const DisplayCategory = () => {
                                     <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Location :<span className='text-sm text-gray-600'>{catagories.place} </span> </h5>
                                     <div className='flex justify-between items-center'>
                                         <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Name: <span className='text-sm text-gray-600'> {catagories.userName}</span> </h5>
-                                        {
+                                        {/* {
                                             productData.map(users =>
                                                 <div key={users._id} className="text-sm">
                                                 {
@@ -69,7 +71,7 @@ const DisplayCategory = () => {
                                                 </div>
                                             )
 
-                                        }
+                                        } */}
                                     </div>
                                     <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Email: <span className='text-sm text-gray-600'>{catagories.userEmail} </span> </h5>
                                     <h5 className="mb-2 text-md font-semibold tracking-tight text-gray-900 dark:text-white">Sellers Phone: <span className='text-sm text-gray-600'>{catagories.phone} </span> </h5>
@@ -79,8 +81,11 @@ const DisplayCategory = () => {
                                 <div className=" flex items-center justify-between mb-6">
                                     <span className="mb-2 text-xl font-bold text-gray-900 dark:text-white">Re-sale Price <span className='text-sm text-gray-600'> ${catagories.price} </span></span>
                                 </div>
-                                <label onClick={() => setBooking(catagories)} htmlFor="my-modal-4" className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Book Now</label>
-
+                                <div className='flex justify-between'>
+                                    <label onClick={() => setBooking(catagories)} htmlFor="my-modal-4" className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Book Now</label>
+                                    <label className=" text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Report</label>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>)
