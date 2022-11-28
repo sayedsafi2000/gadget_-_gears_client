@@ -16,13 +16,17 @@ const Navbar = () => {
         {user?.uid ?
             <>
                 <li><Link className='font-bold text-gray-600' to="/dashboard">Dashboard</Link></li>
-                <li><button className='font-bold text-gray-600' onClick={handleLogout}>Sign Out</button></li>
+                <li><button className='font-bold text-gray-600 rounded-md' onClick={handleLogout}>Sign Out</button></li>
+                <div className='flex items-center justify-center bg-gray-600'>
+                    <li><Link className='font-bold text-white' to="/dashboard">{user?.displayName}</Link></li>
+                    <li><Link className='font-bold text-white' to="/dashboard"><FaUserCircle></FaUserCircle></Link></li>
+                </div>
 
             </>
             :
             <li><Link className='font-bold text-gray-600' to="/login">Login</Link></li>
         }
-        
+
 
     </React.Fragment>
     return (

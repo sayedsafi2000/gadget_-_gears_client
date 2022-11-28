@@ -28,20 +28,20 @@ const DashBoardLayout = () => {
                     <label htmlFor="dashboard-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {
-                            isBuyer && <li><Link className='btn btn-accent mb-1 text-white font-bold' to="/dashboard/myorder">My Orders</Link></li>
+                            isBuyer && <li><Link className='btn bg-blue-500 text-white border-none font-bold mb-1' to="/dashboard/myorder">My Orders</Link></li>
                         }
                         
                         {
                             isSeller && <>
-                                <li><Link className='btn btn-accent mb-1 text-white font-bold' to="/dashboard/addproduct">Add a Product</Link></li>
-                                <li><Link className='btn btn-accent mb-1 text-white font-bold' to="/dashboard/myproduct">My Products</Link></li>
+                                <li><Link className='btn bg-blue-500 text-white border-none font-bold mb-1' to="/dashboard/addproduct">Add a Product</Link></li>
+                                <li><Link className='btn bg-blue-500 text-white border-none font-bold mb-1' to="/dashboard/myproduct">My Products</Link></li>
                             </>
                         }
                         {
                             isAdmin && <>
-                                <li><Link className='btn btn-accent mb-1 text-white font-bold' to="/dashboard/seller">All Seller</Link></li>
-                                <li><Link className='btn btn-accent mb-1 text-white font-bold' to="/dashboard/allusers">All Buyers </Link></li>
-                                <li><Link className='btn btn-accent mb-1 text-white font-bold' to="/dashboard/report">Reported Items</Link></li>
+                                <li><Link className='btn bg-blue-500 text-white border-none font-bold mb-1' to="/dashboard/seller">All Seller</Link></li>
+                                <li><Link className='btn bg-blue-500 text-white border-none font-bold mb-1' to="/dashboard/allusers">All Buyers </Link></li>
+                                <li><Link className='btn bg-blue-500 text-white border-none font-bold mb-1' to="/dashboard/report">Reported Items</Link></li>
                             </>
                         }
 

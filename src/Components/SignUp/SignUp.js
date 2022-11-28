@@ -11,7 +11,6 @@ const SignUp = () => {
     const [createdUserEmail, setCreatedUserEmail] = useState("");
     const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
-    console.log(createdUserEmail)
     // const from = location.state?.from?.pathname || "/"
     const googleProvider = new GoogleAuthProvider();
     const [signUpError, setsignUpError] = useState("")
@@ -28,7 +27,6 @@ const SignUp = () => {
         const userType = form.userType.value;
         const password = form.password.value;
         const usersInfo = { email, name, userType }
-        console.log(email)
         setsignUpError("");
         createUser(email, password)
             .then(result => {
@@ -64,8 +62,7 @@ const SignUp = () => {
                 saveTodb(result?.user?.displayName,
                     result?.user?.email,
                     userType);
-                setCreatedUserEmail(result?.user?.email);
-            })
+                })
             .catch(err => console.error(err));
     }
     const saveTodb = (name, email, userType) => {
@@ -82,7 +79,7 @@ const SignUp = () => {
                 console.log(result)
                 setCreatedUserEmail(email);
                 toast.success("user created successfully");
-                navigate("/");
+                // navigate("/");
             });
     };
 
@@ -122,7 +119,7 @@ const SignUp = () => {
                                 <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="" />
                             </div>
                             <div>
-                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlhtmlFor="role">
+                                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="role">
                                     Select Role
                                 </label>
                                 <select name='userType' className="select select-bordered w-full  mb-5">
@@ -131,7 +128,7 @@ const SignUp = () => {
 
                                 </select>
                             </div>
-                            <button type="submit" className="w-full text-blaxk btn btn-ghonst">Create an account</button>
+                            <button type="submit" className="w-full btn text-white font-bold border-none bg-blue-600">Create an account</button>
                             <p className="text-red-600">{signUpError}</p>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                 Already have an account? <Link to="/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</Link>
@@ -139,7 +136,7 @@ const SignUp = () => {
                         </form>
                         <button onClick={handleGoogleSignin} className="btn bg-gray-100 text-black border-1 mx-auto w-full"> <span className=' text-xl mr-4'>
                             <FcGoogle ></FcGoogle>
-                        </span> Sign in with Google</button>
+                        </span> Signup with Google</button>
                     </div>
                 </div>
             </div>

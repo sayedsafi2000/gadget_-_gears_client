@@ -23,10 +23,10 @@ const AdvertiseProducts = () => {
                     <div key={ads._id} className=''>
                         <div className=''>
                             <div key={ads._id} className=" bg-base-200  mx-auto shadow-xl">
-                                <h2 className='text-xl text-gray-600 font-bold'>Advertised for {ads.title}</h2>
+                                <h2 className='text-xl text-blue-600 font-bold'>Advertised for {ads.title}</h2>
                                 <h2 className='text-sm text-gray-800'>Advertised for {ads.postedTime}</h2>
-                                <div className='flex'>
-                                    <figure><img className='w-[250px] h-[80%]' src={ads.image} alt="phone" /></figure>
+                                <div className='lg:flex'>
+                                    <figure><img className='w-8/12 mx-auto lg:w-[250px] lg:h-[80%]' src={ads.image} alt="phone" /></figure>
                                     <div className="card-body">
                                         <h2 className="text-md">Original Price:  <span className='text-xs text-gray-600'>${ads.orgPrice}</span> </h2>
                                         <h2 className="text-md">Re-sale Price:  <span className='text-xs text-gray-600'> ${ads.price}</span></h2>
